@@ -1,0 +1,19 @@
+&nbsp;&nbsp;&nbsp;
+<div class="container text-center">
+<div class="row">
+  <div class="col-md-4" *ngFor="let device of devices">
+    <div class="card">
+      <div class="card-header bg-primary text-white"><h3>{{device.deviceName}}</h3></div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item">MAC:<b>{{device.mac}}</b></li>
+          <li class="list-group-item">tankHeight:<b>{{device.tankHeight}}</b></li>
+          <li class="list-group-item">societyName:<b>{{device.societyName}}</b></li>
+          <li class="list-group-item">companyName:<b>{{device.companyName}}</b></li>
+        </ul>
+      </div> 
+      <div class="card-footer">address:<b>{{device.address}}</b></div>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,42 @@
+<div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2>Add Device</h2>
+                <div [formGroup]="deviceForm">
+                    <div class="form-group">
+                        <label>Device Name</label>
+                        <input type="text" formControlName="deviceName" class="form-control" />
+                    </div>  
+                    <div class="form-group">
+                      <label>Device MAC id</label>
+                      <input type="text" formControlName="mac" class="form-control" />                      
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Select Company:</label>
+                        <select class="form-control" formControlName="companyName">
+                            <option *ngFor="let company of companies" [value]="company.companyName">{{company.companyName}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sel1">Select Society:</label>
+                        <select class="form-control" formControlName="societyName">
+                            <option *ngFor="let society of societies" [value]="society.societyName">{{society.societyName}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+                    </div>
+                    <div class="form-group">
+                        <label>Tank Height</label>
+                        <input type="text" formControlName="tankHeight" class="form-control" />                      
+                      </div>
+                    <div class="form-group">
+                        <button [disabled]="!deviceForm.valid" id="" name="" class="btn btn-primary" (click)="addDevice()">Add Device</button>                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>

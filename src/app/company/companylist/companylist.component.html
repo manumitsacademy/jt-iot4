@@ -1,0 +1,20 @@
+&nbsp;&nbsp;&nbsp;
+<div class="container text-center">
+<div class="row">
+  <div class="col-md-4" *ngFor="let company of companies">
+    <div class="card">
+      <div class="card-header bg-primary text-white"><h3>{{company.companyName}}</h3></div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item">contactperson:<b>{{company.contactperson}}</b></li>
+          <li class="list-group-item">email:<b>{{company.email}}</b></li>
+          <li class="list-group-item">phonenumber:<b>{{company.phonenumber}}</b></li>
+        </ul>
+      </div> 
+      <div class="card-footer">address:<b>{{company.address}}</b></div>
+    </div>
+  </div>
+</div>
+</div>
+
+   

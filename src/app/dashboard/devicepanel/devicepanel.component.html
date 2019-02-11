@@ -1,0 +1,43 @@
+<div  *ngIf="deviceStatusFlag =='true'">
+    <div class="card shadow p-3 mb-5 bg-white rounded" style="width:300px">
+      <div class="card-body text-center">
+          <ngx-gauge [type]="gaugeType" 
+                  [value]="h" 
+                  [label]="humidityLabel"  
+                  [append]="humidityAppendText"
+                  [thresholds]="threshold"
+                  [cap]="cap"
+                  [thick]="thick">
+          </ngx-gauge>        
+          <a class="btn btn-sm text-white" [ngClass]="inletValveStatus?'btn-success':'btn-danger'">
+              Inlet Valve Status<br>
+              <span *ngIf="inletValveStatus">ON</span>
+              <span *ngIf="!inletValveStatus">OFF</span>
+          </a>&nbsp;
+          <a class="btn btn-light btn-sm">Tank Switch<br>
+              <label class="switch" id="motorswitch" *ngIf="motorSwitchFlag">
+                  <input type="checkbox" [(ngModel)]="motorSwitch" (change)="motorRestart()">
+                  <span class="slider round"></span>
+              </label>
+              <div class="spinner-border spinner-border-sm text-primary" *ngIf="!motorSwitchFlag"></div>
+          </a>
+          <br>
+          <br>
+          <h5 class="card-title">{{deviceName}}</h5>
+          <h6 class="card-title">{{macid}}</h6>
+          <button  *ngIf="resetStatusFlag" class="card-title btn btn-outline-danger" (click)="resetDevice()">RESET</button>
+          <div class="spinner-border spinner-border-sm text-primary" *ngIf="!resetStatusFlag"></div>
+          
+      </div>
+    </div>
+    </div>
+    <div *ngIf="deviceStatusFlag !='true'">
+      <div class="shadow p-3 mb-5 bg-white rounded">
+          <h5>{{deviceName}}</h5>
+          <h5>{{mac}}</h5>
+          <button class="btn btn-primary" disabled>
+              <span class="spinner-grow spinner-grow-sm"></span>
+              Connecting ...
+          </button>
+      </div>
+    </div> 
