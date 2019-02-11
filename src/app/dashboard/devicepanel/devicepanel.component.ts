@@ -29,12 +29,13 @@ export class DevicepanelComponent implements OnInit {
   resetStatusFlag=false;
   ngOnInit(){
     this.motorSwitchFlag=true;
-    this.resetStatusFlag=true;
-    this.stopGettingDataFlag=setInterval(this.getDeviceData.bind(this),4000);
+    this.stopGettingDataFlag=setInterval(this.getDeviceData.bind(this),10000);
     this.username=window.localStorage.getItem('username');
   }
   getDeviceData(){
+    console.log("getDeviceData 1st")
     this.deviceDataUnsubscriptionFlag=this.ddS.getDeviceData(this.mac).subscribe((res)=>{
+      console.log("getDeviceData after subscribe")
       console.log(res);
       this.data=res;
       if(res[0]){
@@ -47,6 +48,7 @@ export class DevicepanelComponent implements OnInit {
           this.inletValveStatus=res[0]['IVS'];
           console.log(this.h,this.t)        
           this.motorSwitchFlag=true;
+          this.resetStatusFlag=true;
         }
       }
       

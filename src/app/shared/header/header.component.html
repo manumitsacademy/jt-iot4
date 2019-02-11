@@ -1,54 +1,61 @@
 
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-  <ul class="navbar-nav">
-    <li class="nav-item active">
-      <a class="nav-link" routerLink="home" *ngIf="loginstatus">DashBoard</a>
-    </li>
-    <li class="nav-item active dropdown" *ngIf="loginstatus">
-        <a class="nav-link dropdown-toggle dropbtn" href="#" id="navbardrop" data-toggle="dropdown">
-            Company
-        </a>
-        <div class="dropdown-menu dropdown-content">
-          <a class="dropdown-item" routerLink="/company">All Companies</a>
-          <a class="dropdown-item" routerLink="/addcompany">Add Company</a>
-        </div>
-    </li>
-    <li class="nav-item active dropdown" *ngIf="loginstatus">
-        <a class="nav-link dropdown-toggle dropbtn" href="#" id="navbardrop" data-toggle="dropdown">
-            Device
-        </a>
-        <div class="dropdown-menu  dropdown-content">
-          <a class="dropdown-item" routerLink="/deviceList">All Devices</a>
-          <a class="dropdown-item" routerLink="/addDevice">Add Device</a>
-        </div>
-    </li>
-    <li class="nav-item active dropdown" *ngIf="loginstatus">
-        <a class="nav-link dropdown-toggle dropbtn" href="#" id="navbardrop" data-toggle="dropdown">
-            Society
-        </a>
-        <div class="dropdown-menu  dropdown-content">
-          <a class="dropdown-item" routerLink="/allSocieties">All Societies</a>
-          <a class="dropdown-item" routerLink="/addsociety">Add Society</a>
-        </div>
-    </li>
-    <li class="nav-item active dropdown" *ngIf="loginstatus">
-        <a class="nav-link dropdown-toggle dropbtn" href="#" id="navbardrop" data-toggle="dropdown">
-            User
-        </a>
-        <div class="dropdown-menu  dropdown-content">
-          <a class="dropdown-item" routerLink="/deviceList">All Users</a>
-          <a class="dropdown-item" routerLink="/addDevice">Add User</a>
-        </div>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/login" *ngIf="!loginstatus">Login</a>
-     
-    </li>
-    <li class="nav-item" *ngIf="loginstatus">
-      <a class="nav-link" routerLink="/login" (click)="logout($event)">Logout</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/signup" *ngIf="!loginstatus">Signup</a>
-    </li>    
-  </ul>
+      <a class="navbar-brand" routerLink="home">Aqua</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+   
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav  ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="home" *ngIf="loginstatus">DashBoard</a>
+        </li>
+        <li class="nav-item active dropdown" *ngIf="loginstatus">
+            <a class="nav-link dropdown-toggle dropbtn" href="#" id="navbardrop" data-toggle="dropdown">
+                Company
+            </a>
+            <div class="dropdown-menu dropdown-content">
+              <a class="dropdown-item" routerLink="/company">All Companies</a>
+              <a class="dropdown-item" routerLink="/addcompany">Add Company</a>
+            </div>
+        </li>
+        <li class="nav-item active dropdown" *ngIf="loginstatus">
+            <a class="nav-link dropdown-toggle dropbtn" href="#" id="navbardrop" data-toggle="dropdown">
+                Device
+            </a>
+            <div class="dropdown-menu  dropdown-content">
+              <a class="dropdown-item" routerLink="/deviceList">All Devices</a>
+              <a class="dropdown-item" routerLink="/addDevice">Add Device</a>
+            </div>
+        </li>
+        <li class="nav-item active dropdown" *ngIf="loginstatus">
+            <a class="nav-link dropdown-toggle dropbtn" href="#" id="navbardrop" data-toggle="dropdown">
+                Society
+            </a>
+            <div class="dropdown-menu  dropdown-content">
+              <a class="dropdown-item" routerLink="/allSocieties">All Societies</a>
+              <a class="dropdown-item" routerLink="/addsociety">Add Society</a>
+            </div>
+        </li>
+        <li class="nav-item active dropdown" *ngIf="loginstatus">
+            <a class="nav-link dropdown-toggle dropbtn" href="#" id="navbardrop" data-toggle="dropdown">
+                User
+            </a>
+            <div class="dropdown-menu  dropdown-content">
+              <a class="dropdown-item" routerLink="/deviceList">All Users</a>
+              <a class="dropdown-item" routerLink="/addDevice">Add User</a>
+            </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" *ngIf="!loginstatus">Login</a>
+        
+        </li>
+        <li class="nav-item" *ngIf="loginstatus">
+          <a class="nav-link" routerLink="/login" (click)="logout($event)">Logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/signup" *ngIf="!loginstatus">Signup</a>
+        </li>    
+      </ul>
+  </div>
 </nav>

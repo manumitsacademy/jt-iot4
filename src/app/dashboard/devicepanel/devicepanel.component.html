@@ -9,7 +9,7 @@
                   [cap]="cap"
                   [thick]="thick">
           </ngx-gauge>        
-          <a class="btn btn-sm text-white" [ngClass]="inletValveStatus?'btn-success':'btn-danger'">
+          <a class="btn btn-sm text-white" [ngClass]="inletValveStatus?'btn-danger':'btn-success'">
               Inlet Valve Status<br>
               <span *ngIf="inletValveStatus">ON</span>
               <span *ngIf="!inletValveStatus">OFF</span>
@@ -25,9 +25,10 @@
           <br>
           <h5 class="card-title">{{deviceName}}</h5>
           <h6 class="card-title">{{macid}}</h6>
-          <button  *ngIf="resetStatusFlag" class="card-title btn btn-outline-danger" (click)="resetDevice()">RESET</button>
-          <div class="spinner-border spinner-border-sm text-primary" *ngIf="!resetStatusFlag"></div>
-          
+            <div style="display: none">
+                <button  *ngIf="resetStatusFlag ==true" class="card-title btn btn-outline-danger" (click)="resetDevice()">RESET</button>
+                <div class="spinner-border spinner-border-sm text-primary" *ngIf="resetStatusFlag != true"></div>
+            </div>
       </div>
     </div>
     </div>

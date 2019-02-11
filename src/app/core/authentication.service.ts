@@ -10,10 +10,10 @@ export class AuthenticationService {
     this.userStatusEvent$=new EventEmitter();
   }
   login(credentials){
-    return this.http.post('http://192.168.0.22:4000/login',credentials)    
+    return this.http.post('http://ec2-52-66-255-20.ap-south-1.compute.amazonaws.com:4000/login',credentials)    
   }
   signup(credentials){
-    return this.http.post('http://192.168.0.22:4000/signup',credentials)    
+    return this.http.post('http://ec2-52-66-255-20.ap-south-1.compute.amazonaws.com:4000/signup',credentials)    
   }
   emitUserStatus(status){    
     this.userStatusEvent$.emit({loginstatus:status});
