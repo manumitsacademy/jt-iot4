@@ -28,15 +28,16 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.aS.login(this.loginform.value).subscribe((res)=>{
+      console.log(res);
       if(res['msg']=="invalidcredentials"){
         alert("Invalid Credentials")
         this.router.navigate(['/login']);
       }
       else{
         console.log(res)
-        window.localStorage.setItem('token',res['sessionid'])
-        window.localStorage.setItem('username',res['username'])
-        window.localStorage.setItem('level',res['level'])
+        window.localStorage.setItem('token',res['token'])
+        //window.localStorage.setItem('username',res['username'])
+        //window.localStorage.setItem('level',res['level'])
         this.aS.emitUserStatus(true)
         this.router.navigate(['home'])
       }      

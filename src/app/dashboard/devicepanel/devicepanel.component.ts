@@ -29,29 +29,28 @@ export class DevicepanelComponent implements OnInit {
   resetStatusFlag=false;
   ngOnInit(){
     this.motorSwitchFlag=true;
-    this.stopGettingDataFlag=setInterval(this.getDeviceData.bind(this),10000);
+    this.stopGettingDataFlag=setInterval(this.getDeviceData.bind(this),2000);
     this.username=window.localStorage.getItem('username');
   }
   getDeviceData(){
-    console.log("getDeviceData 1st")
+    console.log("getDeviceData 1st",this.mac)
     this.deviceDataUnsubscriptionFlag=this.ddS.getDeviceData(this.mac).subscribe((res)=>{
       console.log("getDeviceData after subscribe")
       console.log(res);
       this.data=res;
       if(res[0]){
-        this.deviceStatusFlag=res[0].deviceStatus;
-        if(res[0].deviceStatus==='true'){      
-          this.h=(100-((res[0]['level']-21)/(this.tankHeight/100))).toFixed(2);
-          this.t=res[0]['level'];
-          this.macid=res[0]['mac']
-          this.motorSwitch=res[0]['switch'];
+        this.deviceStatusFlag=res[0].SERVER;
+        if(res[0].SERVER=="1"){      
+          this.h=(100-((res[0]['LEVEL']-21)/(this.tankHeight/100))).toFixed(2);
+          this.t=res[0]['LEVEL'];
+          this.macid=res[0]['MAC']
+          this.motorSwitch=res[0]['STATUS'];
           this.inletValveStatus=res[0]['IVS'];
           console.log(this.h,this.t)        
           this.motorSwitchFlag=true;
           this.resetStatusFlag=true;
         }
-      }
-      
+      }      
     });  
   }
   title = 'myapp';
@@ -68,16 +67,18 @@ export class DevicepanelComponent implements OnInit {
     '60': {color: 'rgb(0,150,140)'}
   };
 
-  motorRestart(){
+  motorRestart(relayid){
     this.motorSwitchFlag=false;
-    this.http.get(`http://ec2-52-66-255-20.ap-south-1.compute.amazonaws.com:5002/command/${this.mac}/${this.motorSwitch}/gubbalapraveen`)
+    var relayStatus=this.data[0][relayid]?1:0;
+    this.http.get(`http://52.66.157.24:4000/deviceCommand/${this.mac}/${relayid}/${relayStatus}/gubbalapraveen@gmail.com`)
       .subscribe((res)=>{
+        alert("Motor Restated")
         console.log(res);
       });
   }
   resetDevice(){
     this.resetStatusFlag=false;
-    this.http.get(`http://ec2-52-66-255-20.ap-south-1.compute.amazonaws.com:5002/command/${this.mac}/reset/gubbalapraveen`)
+    this.http.get(`http://52.66.157.24:4000/command/${this.mac}/reset/gubbalapraveen`)
       .subscribe((res)=>{
         console.log(res);
       });

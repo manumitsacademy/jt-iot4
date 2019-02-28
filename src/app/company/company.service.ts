@@ -9,11 +9,11 @@ export class CompanyService {
   constructor(private http:HttpClient) { }
   addCompany(company){
     return this.http
-    .post('http://ec2-52-66-255-20.ap-south-1.compute.amazonaws.com:4000/companyData',company)
+    .post('http://52.66.157.24:4000/companyData',company)
   }
   getCompanies(){
     return this.http
-    .get('http://ec2-52-66-255-20.ap-south-1.compute.amazonaws.com:4000/companyData')
+    .get('http://52.66.157.24:4000/companyData')
   }
   
 }

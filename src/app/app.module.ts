@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgxGaugeModule } from 'ngx-gauge';
 import { FormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { SharedModule } from './shared/shared.module'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { DeviceModule } from './device/device.module';
 import { UserModule } from './user/user.module';
 import { SocietyModule } from './society/society.module';
 import { AuthGuard } from './auth.guard';
+import { JwtInterceptor } from './core/jwt-interceptor';
 @NgModule({
   declarations: [
     AppComponent
@@ -31,10 +32,11 @@ import { AuthGuard } from './auth.guard';
     CompanyModule,
     DeviceModule,
     UserModule,
-    SocietyModule
-    
+    SocietyModule    
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
