@@ -1,3 +1,4 @@
+
 <div  *ngIf="deviceStatusFlag =='1'">
     <div class="card shadow p-1 mb-1 bg-white rounded">
         <div class="card-body text-center row">
@@ -10,7 +11,7 @@
                         [cap]="cap"
                         [thick]="thick"
                         [size]=100>
-                </ngx-gauge>
+                </ngx-gauge>                
             </div> 
             <div class="md-3">
                 <ngx-gauge [type]="gaugeType" 
@@ -33,10 +34,13 @@
                         [thick]="thick"
                         [size]=100>
                 </ngx-gauge>
-            </div>
-            <div class="row text-center">
-                <div class="col-md-12">
-                    <a class="btn btn-sm text-white text-center" [ngClass]="inletValveStatus?'btn-danger':'btn-success'">
+            </div>            
+            <div class="row" style="height: 100px;">
+                <div class="col-md-8">
+                    <svg class='mySvg'></svg>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-sm text-white text-center align-middle" [ngClass]="inletValveStatus?'btn-danger':'btn-success'">
                         Inlet Valve Status<br>
                         <span *ngIf="inletValveStatus">ON</span>
                         <span *ngIf="!inletValveStatus">OFF</span>
@@ -83,7 +87,7 @@
         </div>
     </div>
 </div>
-    <div *ngIf="deviceStatusFlag !='true'">
+    <div *ngIf="deviceStatusFlag !='1'">
       <div class="shadow p-3 mb-5 bg-white rounded">
           <h5>{{deviceName}}</h5>
           <h5>{{mac}}</h5>
