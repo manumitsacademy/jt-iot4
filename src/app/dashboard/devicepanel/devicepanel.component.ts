@@ -9,27 +9,35 @@ import * as d3 from "d3";
   styleUrls: ['./devicepanel.component.css']
 })
 export class DevicepanelComponent implements OnInit {
+  tanklevelSvgFlag=false;
   x=90;
   svgWidth=100;
   svgHeight=100;
   drawBar(level=1){
-    console.log(level)
-    d3.select('.mySvg')
-      .attr('width',this.svgWidth)
-      .attr('height',this.svgHeight)
-      .append('rect')
-      .attr('x',5)
-      .attr('y',this.svgHeight-level-5)
-      .attr('width',55)
-      .attr('height',level)
+    if(this.tanklevelSvgFlag===true){
+      var el=d3.select('.mySvg');
+        el.attr('width',this.svgWidth)
+        .attr('height',this.svgHeight)
+        .append('rect')
+        .attr('x',0)
+        .attr('y',this.svgHeight-level-0)
+        .attr('width',100)
+        .attr('height',level)   
+      
+    }
+    
+    
   }
   changeBar(level=0){
-    d3.select('.mySvg rect')
-      .transition()
-      .duration(100)
-      .attr('y',this.svgHeight-level-5)
+     
+    console.log("this.tanklevelSvgFlag",this.tanklevelSvgFlag)
+    var el=d3.select('.mySvg rect');
+      el.transition()
+      .duration(1000)
+      .attr('y',this.svgHeight-level-0)
       .attr('height',level)      
       .attr('fill',()=>{
+        this.tanklevelSvgFlag=false; 
         if(level<35){
             return 'red'
         }
@@ -42,11 +50,14 @@ export class DevicepanelComponent implements OnInit {
         if(level=>90){
           return 'green'
         }
-      })      
+      })          
+      
   }
+
   @Input() mac;
   @Input() deviceName;
   @Input() tankHeight;
+
   constructor(private http:HttpClient,private ddS:DevicedataService){}
   loginstatus=true;
   data;
@@ -63,10 +74,12 @@ export class DevicepanelComponent implements OnInit {
   resetStatusFlag=false;
   mylevel=0;
   ngOnInit(){
+    console.log("ngOninit called")
     this.motorSwitchFlag=true;
+    this.tanklevelSvgFlag=true;
     this.stopGettingDataFlag=setInterval(this.getDeviceData.bind(this),2000);
     this.username=window.localStorage.getItem('username');
-    setInterval(()=>{this.mylevel=this.mylevel+10;this.changeBar(this.mylevel)},1000)
+    //setInterval(()=>{this.mylevel=this.mylevel+10;this.changeBar(this.mylevel)},5000)
   }
   ngAfterContentChecked() {
     this.drawBar();
@@ -79,20 +92,21 @@ export class DevicepanelComponent implements OnInit {
       this.data=res;
       if(this.data[0]){
         this.data[0]['RL1']=parseInt(this.data[0]['RL1']);
-      this.data[0]['RL2']=parseInt(this.data[0]['RL2']);
-      this.data[0]['RL3']=parseInt(this.data[0]['RL3']);
-      if(this.data[0].level){
-        var level = this.data[0].LEVEL+this.mylevel;
-        console.log(level);
-        this.drawBar(level);
-      }
-     
+        this.data[0]['RL2']=parseInt(this.data[0]['RL2']);
+        this.data[0]['RL3']=parseInt(this.data[0]['RL3']);    
+        this.data[0]['VR']=parseInt(this.data[0]['VR']);
+        this.data[0]['VY']=parseInt(this.data[0]['VY']);
+        this.data[0]['VB']=parseInt(this.data[0]['VB']);           
+        this.data[0]['IR']=parseInt(this.data[0]['IR']);           
+        this.data[0]['IY']=parseInt(this.data[0]['IY']);           
+        this.data[0]['IB']=parseInt(this.data[0]['IB']);           
       }
       
       if(res[0]){
         this.deviceStatusFlag=res[0].SERVER;
         if(res[0].SERVER=="1"){      
-          this.h=(100-((res[0]['LEVEL']-21)/(this.tankHeight/100))).toFixed(2);
+          this.h=(100-((res[0]['LEVEL']-21)/(this.tankHeight/100))).toFixed(2);          
+          this.changeBar(this.h)
           this.t=res[0]['LEVEL'];
           this.macid=res[0]['MAC']
           this.motorSwitch=res[0]['STATUS'];
@@ -113,9 +127,9 @@ export class DevicepanelComponent implements OnInit {
   temperatureLabel = "Temperature";
   temperatureAppendText = "C";
   threshold = {
-    '20': {color: 'red'},
-    '30': {color: 'orange'},
-    '60': {color: 'rgb(0,150,140)'}
+    '0': {color: 'red'},
+    '230': {color: 'rgb(0,150,140)'},
+    '250': {color: 'red'}
   };
 
   motorRestart(relayid){

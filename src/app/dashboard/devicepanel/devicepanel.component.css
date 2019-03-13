@@ -61,3 +61,7 @@
   #motorswitch {
     margin-bottom: 0px !important;
   }
+
+  .mySvg{
+    border:1px solid;
+  }
