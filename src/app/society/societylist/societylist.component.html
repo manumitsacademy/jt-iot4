@@ -3,7 +3,13 @@
 <div class="row">
   <div class="col-md-4" *ngFor="let society of societies">
     <div class="card">
-      <div class="card-header bg-primary text-white"><h3>{{society.societyName}}</h3></div>
+      <div class="card-header bg-primary text-white">
+        <h3>
+            {{society.societyName}}
+            <button class="btn btn-info" (click)="editSocity(society.societyRegNumber)">Edit</button>&nbsp;
+            <button class="btn btn-danger" (click)="deleteSocity(society.societyRegNumber)">Delete</button>
+        </h3>
+      </div>
       <div class="card-body">
         <ul class="list-group">
           <li class="list-group-item">contactperson:<b>{{society.contactperson}}</b></li>

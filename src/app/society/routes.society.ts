@@ -9,6 +9,10 @@ export var routes:Routes = [
         component:AddsocietyComponent
     },
     {
+        path:"editSociety/:regNumber",
+        component:AddsocietyComponent
+    },
+    {
         path:"allSocieties",
         component:SocietylistComponent
     }

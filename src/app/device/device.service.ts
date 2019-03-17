@@ -13,4 +13,7 @@ export class DeviceService {
   getDevices(){
     return this.http.get('http://52.66.157.24:4000/deviceData');
   }
+  updateDevice(device){    
+    return this.http.put('http://52.66.157.24:4000/deviceData',device)
+  }
 }

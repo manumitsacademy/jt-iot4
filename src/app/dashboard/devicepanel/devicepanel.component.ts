@@ -9,12 +9,12 @@ import * as d3 from "d3";
   styleUrls: ['./devicepanel.component.css']
 })
 export class DevicepanelComponent implements OnInit {
+  l: string;
   tanklevelSvgFlag=false;
   x=90;
   svgWidth=100;
   svgHeight=100;
   drawBar(level=1){
-    if(this.tanklevelSvgFlag===true){
       var el=d3.select('.mySvg');
         el.attr('width',this.svgWidth)
         .attr('height',this.svgHeight)
@@ -22,15 +22,11 @@ export class DevicepanelComponent implements OnInit {
         .attr('x',0)
         .attr('y',this.svgHeight-level-0)
         .attr('width',100)
-        .attr('height',level)   
-      
-    }
-    
-    
+        .attr('height',level)      
   }
   changeBar(level=0){
      
-    console.log("this.tanklevelSvgFlag",this.tanklevelSvgFlag)
+    //console.log("this.tanklevelSvgFlag",this.tanklevelSvgFlag)
     var el=d3.select('.mySvg rect');
       el.transition()
       .duration(1000)
@@ -57,6 +53,7 @@ export class DevicepanelComponent implements OnInit {
   @Input() mac;
   @Input() deviceName;
   @Input() tankHeight;
+  @Input() tankCapacity;
 
   constructor(private http:HttpClient,private ddS:DevicedataService){}
   loginstatus=true;
@@ -74,21 +71,19 @@ export class DevicepanelComponent implements OnInit {
   resetStatusFlag=false;
   mylevel=0;
   ngOnInit(){
-    console.log("ngOninit called")
+    //console.log("ngOninit called")
     this.motorSwitchFlag=true;
-    this.tanklevelSvgFlag=true;
     this.stopGettingDataFlag=setInterval(this.getDeviceData.bind(this),2000);
     this.username=window.localStorage.getItem('username');
-    //setInterval(()=>{this.mylevel=this.mylevel+10;this.changeBar(this.mylevel)},5000)
   }
-  ngAfterContentChecked() {
+  ngAfterContentChecked() {    
+    //console.log("this.tanklevelSvgFlag",this.tanklevelSvgFlag)
     this.drawBar();
   }
   getDeviceData(){
       //console.log("getDeviceData 1st",this.mac)
     this.deviceDataUnsubscriptionFlag=this.ddS.getDeviceData(this.mac).subscribe((res)=>{
       //console.log("getDeviceData after subscribe")
-      //console.log(res);
       this.data=res;
       if(this.data[0]){
         this.data[0]['RL1']=parseInt(this.data[0]['RL1']);
@@ -105,7 +100,9 @@ export class DevicepanelComponent implements OnInit {
       if(res[0]){
         this.deviceStatusFlag=res[0].SERVER;
         if(res[0].SERVER=="1"){      
-          this.h=(100-((res[0]['LEVEL']-21)/(this.tankHeight/100))).toFixed(2);          
+          this.h=(100-((res[0]['LEVEL']-21)/(this.tankHeight/100))).toFixed(2);
+          this.l = ((this.tankCapacity*this.h)/100).toFixed(2)
+          this.tanklevelSvgFlag=false;          
           this.changeBar(this.h)
           this.t=res[0]['LEVEL'];
           this.macid=res[0]['MAC']

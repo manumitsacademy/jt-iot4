@@ -9,5 +9,9 @@ export var routes:Routes = [
     {
         path:"addDevice",
         component:AdddeviceComponent
+    },
+    {
+        path:"editDevice/:mac",
+        component:AdddeviceComponent
     }
 ]

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
-                <h2>Add Society</h2>
+                <h2>{{operationText}}</h2>
                 <div [formGroup]="societyForm">
                     <div class="form-group">
                         <label>Society Name</label>
@@ -42,24 +42,71 @@
                             <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
                         </div>
                     </div>    
-  
-                    <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="text" formControlName="phonenumber" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phonenumber.errors }" />
-                        <div *ngIf="submitted && f.phonenumber.errors" class="invalid-feedback">
-                          <div *ngIf="f.phonenumber.errors.required">Phone number is required</div>           
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone Number1</label>
+                                <input type="text" formControlName="phonenumber1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phonenumber.errors }" />
+                                <div *ngIf="submitted && f.phonenumber.errors" class="invalid-feedback">
+                                  <div *ngIf="f.phonenumber.errors.required">Phone number is required</div>           
+                                </div>
+                            </div>
                         </div>
-                    </div>  
-  
-                    <div class="form-group">
-                      <label>Contact Person</label>
-                      <input type="text" formControlName="contactperson" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contactperson.errors }" />
-                      <div *ngIf="submitted && f.contactperson.errors" class="invalid-feedback">
-                          <div *ngIf="f.contactperson.errors.required">Contact person is required</div>           
-                      </div>
-                     </div>  
-                    <div class="form-group">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Contact Person Name</label>
+                                <input type="text" formControlName="contactperson1" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contactperson.errors }" />
+                                <div *ngIf="submitted && f.contactperson.errors" class="invalid-feedback">
+                                    <div *ngIf="f.contactperson.errors.required">Contact person is required</div>           
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone Number2</label>
+                                <input type="text" formControlName="phonenumber2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phonenumber.errors }" />
+                                <div *ngIf="submitted && f.phonenumber.errors" class="invalid-feedback">
+                                  <div *ngIf="f.phonenumber.errors.required">Phone number is required</div>           
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Contact Person Name</label>
+                                <input type="text" formControlName="contactperson2" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contactperson.errors }" />
+                                <div *ngIf="submitted && f.contactperson.errors" class="invalid-feedback">
+                                    <div *ngIf="f.contactperson.errors.required">Contact person is required</div>           
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Phone Number3</label>
+                                <input type="text" formControlName="phonenumber3" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phonenumber.errors }" />
+                                <div *ngIf="submitted && f.phonenumber.errors" class="invalid-feedback">
+                                  <div *ngIf="f.phonenumber.errors.required">Phone number is required</div>           
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Contact Person Name</label>
+                                <input type="text" formControlName="contactperson3" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contactperson.errors }" />
+                                <div *ngIf="submitted && f.contactperson.errors" class="invalid-feedback">
+                                    <div *ngIf="f.contactperson.errors.required">Contact person is required</div>           
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" *ngIf="operationText==='Add Society'">
                         <button [disabled]="!societyForm.valid" id="" name="" class="btn btn-primary" (click)="addSociety()">Add Society</button>                       
+                    </div>
+                    <div class="form-group" *ngIf="operationText==='Edit Society'">
+                        <button [disabled]="!societyForm.valid" id="" name="" class="btn btn-primary" (click)="updateSocity()">Update Society</button>                       
                     </div>
                 </div>
             </div>

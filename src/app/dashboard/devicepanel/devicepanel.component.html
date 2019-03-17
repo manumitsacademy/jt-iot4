@@ -71,20 +71,23 @@
                         [size]=100>
                 </ngx-gauge>
             </div>     
-            <div class="row" style="height: 100px">
+            <div class="row">
                 <div class="col-md-8">
-                    <svg class='mySvg'></svg>
+                    <svg class='mySvg'></svg><br>
+                    Level: <b>{{h}}%</b><br>
+                    Liters: <b>{{l}}Ltr</b><br>
                 </div>
+                
                 <div class="col-md-4">
                     <a class="btn btn-sm text-white text-center align-middle" [ngClass]="inletValveStatus?'btn-danger':'btn-success'">
-                        Inlet Valve Status<br>
                         <span *ngIf="inletValveStatus">ON</span>
                         <span *ngIf="!inletValveStatus">OFF</span>
-                    </a>
+                    </a><br>
+                    Inlet Valve Status
                 </div>
             </div>
             <div class="row text-center">
-                <div class="col-md-4">
+                <div class="col-md-4">                    
                     <a class="btn btn-light btn-sm">Tank Switch<br>
                         <label class="switch" id="motorswitch" *ngIf="motorSwitchFlag">
                             <input type="checkbox" [(ngModel)]="data[0]['RL1']" (change)="motorRestart('RL1')">
