@@ -52,6 +52,9 @@ export class AddUserComponent implements OnInit {
          }
        })
   }
+  check(){
+    console.log(this.userForm)
+  }
   addUser(){
     console.log("this.userForm",this.userForm.value)
     this.uS.addUser(this.userForm.value).subscribe((res)=>{

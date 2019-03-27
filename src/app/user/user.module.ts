@@ -4,8 +4,9 @@ import { AddUserComponent } from './add-user/add-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { routes } from './routes.user';
+import { UserlistComponent } from './userlist/userlist.component';
 @NgModule({
-  declarations: [AddUserComponent],
+  declarations: [AddUserComponent, UserlistComponent],
   imports: [
     CommonModule,FormsModule,ReactiveFormsModule,RouterModule.forChild(routes)
   ]

@@ -42,7 +42,7 @@
                 User
             </a>
             <div class="dropdown-menu  dropdown-content">
-              <a class="dropdown-item" routerLink="/deviceList">All Users</a>
+              <a class="dropdown-item" routerLink="/userList">All Users</a>
               <a class="dropdown-item" routerLink="/addUser">Add User</a>
             </div>
         </li>
@@ -53,9 +53,11 @@
         <li class="nav-item" *ngIf="loginstatus">
           <a class="nav-link" routerLink="/login" (click)="logout($event)">Logout</a>
         </li>
+        <!--
         <li class="nav-item">
           <a class="nav-link" routerLink="/signup" *ngIf="!loginstatus">Signup</a>
         </li>    
+        -->
       </ul>
   </div>
 </nav>

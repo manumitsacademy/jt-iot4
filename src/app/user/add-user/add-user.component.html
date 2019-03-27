@@ -48,16 +48,17 @@
                     </div>
                     <div class="form-group col-md-12">
                         <label for="sel1">Select Role:</label>
-                        <select class="form-control" formControlName="societyName">
+                        <select class="form-control" formControlName="roleName">
                             <option *ngFor="let role of userRoles" [value]="role">{{role}}</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-12 text-center" *ngIf="operationText==='Add Device'">                        
-                        <button [disabled]="!userForm.valid" id="" name="" class="btn btn-primary" (click)="addDevice()">Add Device</button>                       
+                    <div class="form-group col-md-12 text-center" *ngIf="operationText==='Add User'">                        
+                        <button [disabled]="!userForm.valid" id="" name="" class="btn btn-primary" (click)="addUser()">Add Device</button>                       
                     </div>
-                    <div class="form-group col-md-12 text-center" *ngIf="operationText==='Edit Device'">                        
-                        <button [disabled]="!userForm.valid" id="" name="" class="btn btn-primary" (click)="updateDevice()">Update Device</button>                       
+                    <div class="form-group col-md-12 text-center" *ngIf="operationText==='Edit User'">                        
+                        <button [disabled]="!userForm.valid" id="" name="" class="btn btn-primary" (click)="updateUser()">Update Device</button>                       
                     </div>
+                    <BUTTON (click)="check()">check</BUTTON>
                 </div>
             </div>
         </div>
