@@ -145,9 +145,9 @@ export class DevicepanelComponent implements OnInit {
         //console.log(res);
       });
   }
-  /*ngOnDestroy(){
+  ngOnDestroy(){
     console.log("DEstro");
     this.deviceDataUnsubscriptionFlag.unsubscribe();
     clearInterval(this.stopGettingDataFlag);
-  }*/
+  }
 }

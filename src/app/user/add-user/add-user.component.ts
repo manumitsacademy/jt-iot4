@@ -15,7 +15,7 @@ import { HttpClient } from '@angular/common/http';
 export class AddUserComponent implements OnInit {
   companies;
   societies;
-  userRoles=['superAdmin','admin','manager','user'];
+  userRoles=['admin','manager','user'];
   genderTypes=['Male','Female','Others'];
   operationText:string;
   constructor(public fb:FormBuilder,public cS:CompanyService,public sS:SocietyService,
