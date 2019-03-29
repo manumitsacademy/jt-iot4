@@ -1,25 +1,25 @@
 &nbsp;&nbsp;&nbsp;
 <div class="container text-center">
 <div class="row">
-  <div class="col-md-4" *ngFor="let society of societies">
+  <div class="col-md-4" *ngFor="let user of users">
     <div class="card">
       <div class="card-header bg-primary text-white">
         <h3>
-            {{society.societyName}}
-            <button class="btn btn-info" (click)="editSocity(society.societyRegNumber)">Edit</button>&nbsp;
-            <button class="btn btn-danger" (click)="deleteSocity(society.societyRegNumber)">Delete</button>
+          {{user.firstName}}&nbsp;&nbsp;{{user.lastName}}<br>
+            <button class="btn btn-info" (click)="editUser(user.emailid)">Edit</button>&nbsp;
+            <button class="btn btn-danger" (click)="deleteUser(user.emailid)">Delete</button>
         </h3>
       </div>
       <div class="card-body">
         <ul class="list-group">
-          <li class="list-group-item">contactperson:<b>{{society.contactperson}}</b></li>
-          <li class="list-group-item">email:<b>{{society.email}}</b></li>
-          <li class="list-group-item">phonenumber:<b>{{society.phonenumber}}</b></li>
-          <li class="list-group-item">societyRegNumber:<b>{{society.societyRegNumber}}</b></li>
-          <li class="list-group-item">companyName:<b>{{society.companyName}}</b></li>
+          <li class="list-group-item">Name:{{user.firstName}}&nbsp;&nbsp;{{user.lastName}}<b></b></li>
+          <li class="list-group-item">email:<b>{{user.emailid}}</b></li>
+          <li class="list-group-item">phonenumber:<b>{{user.phoneNumber}}</b></li>
+          <li class="list-group-item">societyRegNumber:<b>{{user.societyName}}</b></li>
+          <li class="list-group-item">companyName:<b>{{user.companyName}}</b></li>
         </ul>
       </div> 
-      <div class="card-footer">address:<b>{{society.address}}</b></div>
+      <div class="card-footer">address:<b>{{user.address}}</b></div>
     </div>
   </div>
 </div>

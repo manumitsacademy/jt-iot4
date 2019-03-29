@@ -1,0 +1,139 @@
+
+<div  *ngIf="deviceStatusFlag =='1'" class="container">
+    <div class="card shadow p-1 mb-1 bg-white rounded">
+        <div class="card-body text-center row">
+            <div class="md-3">
+                <ngx-gauge [type]="gaugeType" 
+                        [value]="data[0]['VR']" 
+                        [label]="'VR'"  
+                        [append]="'Volts'"
+                        [thresholds]="threshold"
+                        [cap]="cap"
+                        [thick]="thick"
+                        [size]=100
+                        [max]=400>
+                </ngx-gauge>                
+            </div> 
+            <div class="md-3">
+                <ngx-gauge [type]="gaugeType" 
+                        [value]="data[0]['VY']" 
+                        [label]="'VY'"  
+                        [append]="'Volts'"
+                        [thresholds]="threshold"
+                        [cap]="cap"
+                        [thick]="thick"
+                        [size]=100
+                        [max]=400>
+                </ngx-gauge>
+            </div>
+            <div class="md-3">
+                <ngx-gauge [type]="gaugeType" 
+                        [value]="data[0]['VB']" 
+                        [label]="'VB'"  
+                        [append]="'Volts'"
+                        [thresholds]="threshold"
+                        [cap]="cap"
+                        [thick]="thick"
+                        [size]=100
+                        [max]=400>
+                </ngx-gauge>
+            </div>      
+            <div class="md-3">
+                <ngx-gauge [type]="gaugeType" 
+                        [value]="data[0]['IR']" 
+                        [label]="'IR'"  
+                        [append]="'Amps'"
+                        [thresholds]="threshold"
+                        [cap]="cap"
+                        [thick]="thick"
+                        [size]=100>
+                </ngx-gauge>
+            </div>   
+            <div class="md-3">
+                <ngx-gauge [type]="gaugeType" 
+                        [value]="data[0]['IY']" 
+                        [label]="'IY'"  
+                        [append]="'Amps'"
+                        [thresholds]="threshold"
+                        [cap]="cap"
+                        [thick]="thick"
+                        [size]=100>
+                </ngx-gauge>
+            </div> 
+            <div class="md-3">
+                <ngx-gauge [type]="gaugeType" 
+                        [value]="data[0]['IB']" 
+                        [label]="'IB'"  
+                        [append]="'Amps'"
+                        [thresholds]="threshold"
+                        [cap]="cap"
+                        [thick]="thick"
+                        [size]=100>
+                </ngx-gauge>
+            </div>     
+            <div class="row">
+                <div class="col-md-8">
+                    <svg class='mySvg'  width="50" height="100">
+                        <rect width="100" height="100" x="0" y="0" />
+                    </svg><br>
+                    Level: <b>{{h}}%</b><br>
+                    Liters: <b>{{l}}Ltr</b><br>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-sm text-white text-center align-middle" [ngClass]="inletValveStatus?'btn-danger':'btn-success'">
+                        <span *ngIf="inletValveStatus">ON</span>
+                        <span *ngIf="!inletValveStatus">OFF</span>
+                    </a><br>
+                    Inlet Valve Status
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">                    
+                    <a class="btn btn-light btn-sm">Tank Switch<br>
+                        <label class="switch" id="motorswitch" *ngIf="motorSwitchFlag">
+                            <input type="checkbox" [(ngModel)]="data[0]['RL1']" (change)="motorRestart('RL1')">
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="spinner-border spinner-border-sm text-primary" *ngIf="!motorSwitchFlag"></div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-light btn-sm">Tank Switch<br>
+                        <label class="switch" id="motorswitch" *ngIf="motorSwitchFlag">
+                            <input type="checkbox" [(ngModel)]="data[0]['RL2']" (change)="motorRestart('RL2')">
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="spinner-border spinner-border-sm text-primary" *ngIf="!motorSwitchFlag"></div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-light btn-sm">Tank Switch<br>
+                        <label class="switch" id="motorswitch" *ngIf="motorSwitchFlag">
+                            <input type="checkbox" [(ngModel)]="data[0]['RL3']" (change)="motorRestart('RL3')">
+                            <span class="slider round"></span>
+                        </label>
+                        <div class="spinner-border spinner-border-sm text-primary" *ngIf="!motorSwitchFlag"></div>
+                    </a>
+                </div>
+            </div>
+            <br>
+            <br>
+            <h5 class="card-title">{{deviceName}}</h5>
+            <h6 class="card-title">{{macid}}</h6>
+            <div style="display: none">
+                <button  *ngIf="resetStatusFlag ==true" class="card-title btn btn-outline-danger" (click)="resetDevice()">RESET</button>
+                <div class="spinner-border spinner-border-sm text-primary" *ngIf="resetStatusFlag != true"></div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div *ngIf="deviceStatusFlag !='1'">
+      <div class="shadow p-3 mb-5 bg-white rounded">
+          <h5>{{deviceName}}</h5>
+          <h5>{{mac}}</h5>
+          <button class="btn btn-primary" disabled>
+              <span class="spinner-grow spinner-grow-sm"></span>
+              Connecting ...
+          </button>
+      </div>
+    </div> 
