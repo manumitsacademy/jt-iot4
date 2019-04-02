@@ -2,11 +2,12 @@
 <div id="d1" class="container" >
   <h1>{{username}} Dash board</h1>
     <div class="row">
-        <div *ngFor="let device of allDevices" class="col-md-4">
-            <a [routerLink]="['/deviceDetails']" [queryParams]="device">{{device.deviceName}}</a>
-           <!--  <app-devicepanel [mac]="device.mac" [deviceName]="device.deviceName" 
-            [tankHeight]="device.tankHeight" [tankCapacity]="device.tankCapacity" >                
-            </app-devicepanel> -->
+        <div *ngFor="let device of allDevices;let i = index" class="col-md-4">
+            <!-- <a [routerLink]="['/deviceDetails']" [queryParams]="device">{{device.deviceName}}</a> -->
+            <app-devicepanel [mac]="device.mac" [deviceName]="device.deviceName" 
+            [tankHeight]="device.tankHeight" [tankCapacity]="device.tankCapacity" 
+            [deviceId]="'d'+i+1">                
+            </app-devicepanel>
         </div>
     </div>
 </div>

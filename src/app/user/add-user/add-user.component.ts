@@ -15,8 +15,9 @@ import { HttpClient } from '@angular/common/http';
 export class AddUserComponent implements OnInit {
   companies;
   societies;
-  userRoles=['admin','manager','user'];
+  userRoles;
   genderTypes=['Male','Female','Others'];
+  currentUserRole;
   operationText:string;
   constructor(public fb:FormBuilder,public cS:CompanyService,public sS:SocietyService,
               public uS:UserService,public aR:ActivatedRoute,public http:HttpClient,
@@ -36,21 +37,34 @@ export class AddUserComponent implements OnInit {
       timestamp:[],
       status:[],
       lastloggedin:[]
-
     });  
   }
   userForm:FormGroup;
   ngOnInit() {
-       this.cS.getCompanies().subscribe((res)=>{this.companies=res});
-       this.sS.getSocieties().subscribe((res)=>{console.log("this.societies=res",res);this.societies=res});
-       this.aR.params.subscribe((res)=>{
-         if(res.mac){
-          this.operationText="Edit User";          
-         }
-         else{
-          this.operationText="Add User";
-         }
-       })
+    this.cS.getCompanies().subscribe((res)=>{this.companies=res});
+    this.sS.getSocieties().subscribe((res)=>{console.log("this.societies=res",res);this.societies=res});
+    this.aR.params.subscribe((res)=>{
+      if(res.mac){
+        this.operationText="Edit User";          
+      }
+      else{
+        this.operationText="Add User";
+      }
+    })
+    this.userRoles = this.uS.getUserRoles();
+    this.currentUserRole = window.localStorage.getItem('roleName');
+    if(this.currentUserRole==='admin' || this.currentUserRole === 'manager'){
+      this.userForm.controls['companyName'].setValue(window.localStorage.getItem('companyName'))
+      this.userForm.controls['societyName'].setValue('n/a');          
+    }
+    this.userForm.controls['roleName'].valueChanges.subscribe((res)=>{
+      if(res=='user'){
+        this.userForm.controls['societyName'].setValue('');  
+      }
+      if(res=='manager'){
+        this.userForm.controls['societyName'].setValue('n/a'); 
+      }
+    })
   }
   check(){
     console.log(this.userForm)

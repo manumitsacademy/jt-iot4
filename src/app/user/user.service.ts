@@ -15,4 +15,15 @@ export class UserService {
   updateUser(user){    
     return this.http.put('http://52.66.157.24:4000/userData',user)
   }
+  getUserRoles(){
+    if(window.localStorage.getItem('roleName')==="superAdmin"){
+      return ['admin','manager','user']
+    }
+    if(window.localStorage.getItem('roleName')==="admin"){
+      return ['manager','user']
+    }
+    if(window.localStorage.getItem('roleName')==="manager"){
+      return ['user']
+    }
+  }
 }

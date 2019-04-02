@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { DevicepanelComponent } from './devicepanel/devicepanel.component';
 import { DeviceDetailsComponent } from './device-details/device-details.component';
+import { BarComponent } from './bar/bar.component';
 const routes: Routes = [
   {
     path:'home',
@@ -14,7 +15,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  declarations: [HomeComponent, DevicepanelComponent, DeviceDetailsComponent],
+  declarations: [HomeComponent, DevicepanelComponent, DeviceDetailsComponent, BarComponent],
   imports: [
     CommonModule,NgxGaugeModule,FormsModule,HttpClientModule,RouterModule.forChild(routes)
   ]

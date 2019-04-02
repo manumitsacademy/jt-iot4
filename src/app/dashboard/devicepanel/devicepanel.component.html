@@ -1,7 +1,37 @@
 
 <div  *ngIf="deviceStatusFlag =='1'">
     <div class="card shadow p-1 mb-1 bg-white rounded">
-        <div class="card-body text-center row">
+        <div class="card-body text-center row">              
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- <svg class='mySvg' width="50" height="100">
+                        <rect></rect>
+                    </svg>-->
+                   <app-bar [deviceId]="deviceId" [waterHeight]="h"></app-bar>
+                    <br>
+                    Level: <b>{{h}}%</b><br>
+                    Liters: <b>{{l}}Ltr</b><br>
+                </div>
+                
+                <div class="col-md-4">
+                    <a class="btn btn-sm text-white text-center align-middle" [ngClass]="inletValveStatus?'btn-danger':'btn-success'">
+                        <span *ngIf="inletValveStatus">ON</span>
+                        <span *ngIf="!inletValveStatus">OFF</span>
+                    </a><br>
+                    Inlet Valve Status
+                </div>
+            </div>
+            
+            <br>
+            <br>
+            <h5 class="card-title">{{deviceName}}</h5>
+            <h6 class="card-title">{{macid}}</h6>
+            <div style="display: none">
+                <button  *ngIf="resetStatusFlag ==true" class="card-title btn btn-outline-danger" (click)="resetDevice()">RESET</button>
+                <div class="spinner-border spinner-border-sm text-primary" *ngIf="resetStatusFlag != true"></div>
+            </div>
+        </div>
+        <!--
             <div class="md-3">
                 <ngx-gauge [type]="gaugeType" 
                         [value]="data[0]['VR']" 
@@ -70,22 +100,7 @@
                         [thick]="thick"
                         [size]=100>
                 </ngx-gauge>
-            </div>     
-            <div class="row">
-                <div class="col-md-8">
-                    <svg class='mySvg'></svg><br>
-                    Level: <b>{{h}}%</b><br>
-                    Liters: <b>{{l}}Ltr</b><br>
-                </div>
-                
-                <div class="col-md-4">
-                    <a class="btn btn-sm text-white text-center align-middle" [ngClass]="inletValveStatus?'btn-danger':'btn-success'">
-                        <span *ngIf="inletValveStatus">ON</span>
-                        <span *ngIf="!inletValveStatus">OFF</span>
-                    </a><br>
-                    Inlet Valve Status
-                </div>
-            </div>
+            </div>   
             <div class="row text-center">
                 <div class="col-md-4">                    
                     <a class="btn btn-light btn-sm">Tank Switch<br>
@@ -115,15 +130,7 @@
                     </a>
                 </div>
             </div>
-            <br>
-            <br>
-            <h5 class="card-title">{{deviceName}}</h5>
-            <h6 class="card-title">{{macid}}</h6>
-            <div style="display: none">
-                <button  *ngIf="resetStatusFlag ==true" class="card-title btn btn-outline-danger" (click)="resetDevice()">RESET</button>
-                <div class="spinner-border spinner-border-sm text-primary" *ngIf="resetStatusFlag != true"></div>
-            </div>
-        </div>
+        -->
     </div>
 </div>
     <div *ngIf="deviceStatusFlag !='1'">

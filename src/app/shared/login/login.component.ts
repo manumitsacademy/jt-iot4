@@ -36,6 +36,9 @@ export class LoginComponent implements OnInit {
       else{
         console.log(res)
         window.localStorage.setItem('token',res['token'])
+        window.localStorage.setItem('emailid',res['user'].emailid)
+        window.localStorage.setItem('roleName',res['user'].roleName);
+        window.localStorage.setItem('companyName',res['user'].companyName);
         //window.localStorage.setItem('username',res['username'])
         //window.localStorage.setItem('level',res['level'])
         this.aS.emitUserStatus(true)

@@ -8,15 +8,17 @@ export class DevicedataService {
   httpOptions = {
     headers: new HttpHeaders({ 'Authorization': localStorage.getItem('jwtToken') })
   };
-  constructor(public http:HttpClient) {
-   
-   }
+  constructor(public http:HttpClient) {}
   getDeviceData(mac){
     return this.http.get(`http://52.66.157.24:4000/getDeviceData/${mac}`)
     //0xDE,0xAD,0xBE,0xEF,0xFE,0xEE
   }
   getDevicesMac(){
-    return this.http.get(`http://52.66.157.24:4000/deviceData`);
+    var roleName = localStorage.getItem('roleName');
+    var companyName = localStorage.getItem('companyName');
+    var societyName = localStorage.getItem('societyName');
+  
+    return this.http.get(`http://52.66.157.24:4000/deviceData/${roleName}/${companyName}/${societyName}`);
   }
 }
 
