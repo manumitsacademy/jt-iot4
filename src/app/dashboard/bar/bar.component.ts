@@ -8,20 +8,25 @@ import * as d3 from "d3";
 })
 export class BarComponent implements OnInit {
 
+  @Input() deviceId;
+  @Input() waterHeight;
+  localWaterHeight=0;
   constructor() { }
   
   ngOnInit() {
   }
   ngAfterContentChecked(){
+     if(this.localWaterHeight!=this.waterHeight){
+      console.log("this.localWaterHeight,this.waterHeight",this.localWaterHeight,this.waterHeight)
+      this.localWaterHeight=this.waterHeight;      
+      this.changeBar(this.waterHeight)
+    }    
     this.changeBar(this.waterHeight)
   }
-  @Input() deviceId;
-  @Input() waterHeight;
   changeBar(level=0){
     var s = "#"+this.deviceId+" "+".mySvg rect";
     var el=d3.select(s);
-      el.transition().duration(10)
-      .attr('x',0).attr('y',100-level-0).attr('height',level).attr('width',50)     
+      el.attr('x',0).attr('y',100-level-0).attr('height',level).attr('width',50)     
       .attr('fill',()=>{
         if(level<35){
             return 'red'

@@ -9,6 +9,7 @@ import * as d3 from "d3";
   styleUrls: ['./devicepanel.component.css']
 })
 export class DevicepanelComponent implements OnInit {
+  emailid: string;
   constructor(private http:HttpClient,private ddS:DevicedataService, public eRef:ElementRef){}
   l: string;
   tanklevelSvgFlag=false;
@@ -64,8 +65,10 @@ export class DevicepanelComponent implements OnInit {
   }
   ngOnInit(){    
     this.motorSwitchFlag=true;
-    this.stopGettingDataFlag=setInterval(this.getDeviceData.bind(this),5000);
+    this.stopGettingDataFlag=setInterval(this.getDeviceData.bind(this),15000);
     this.username=window.localStorage.getItem('username');
+    
+    this.emailid = window.localStorage.getItem('emailid')
   }
   loginstatus=true;
   data;
@@ -136,15 +139,15 @@ export class DevicepanelComponent implements OnInit {
   motorRestart(relayid){
     this.motorSwitchFlag=false;
     var relayStatus=this.data[0][relayid]?1:0;
-    this.http.get(`http://52.66.157.24:4000/deviceCommand/${this.mac}/${relayid}/${relayStatus}/gubbalapraveen@gmail.com`)
+    this.http.get(`http://52.66.157.24:4000/deviceCommand/${this.mac}/${relayid}/${relayStatus}/${this.emailid}`)
       .subscribe((res)=>{
-        alert("Motor Restated")
+        alert("Motor Restarted")
         //console.log(res);
       });
   }
   resetDevice(){
     this.resetStatusFlag=false;
-    this.http.get(`http://52.66.157.24:4000/command/${this.mac}/reset/gubbalapraveen`)
+    this.http.get(`http://52.66.157.24:4000/command/${this.mac}/reset/${this.emailid}`)
       .subscribe((res)=>{
         //console.log(res);
       });
