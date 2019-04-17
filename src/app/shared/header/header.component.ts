@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
     }
     this.as.userStatusEvent$.subscribe((res)=>{     
       this.loginstatus=res.loginstatus;
+      this.roleName = window.localStorage.getItem('roleName');
     });
   }
   logout(e){
