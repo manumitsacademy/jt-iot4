@@ -10,7 +10,7 @@
         <li class="nav-item active">
           <a class="nav-link" routerLink="home" *ngIf="loginstatus">DashBoard</a>
         </li>
-        <li class="nav-item active dropdown" *ngIf="loginstatus">
+        <li class="nav-item active dropdown" *ngIf="loginstatus && roleName ==='superAdmin'">
             <a class="nav-link dropdown-toggle dropbtn" href="#" id="navbardrop" data-toggle="dropdown">
                 Company
             </a>
